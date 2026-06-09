@@ -55,11 +55,11 @@ Chain strategy: stacked-to-main
 
 ## Phase 5: Roles & Permissions
 
-- [ ] 5.1 Create `RolesModule` CRUD — scoped by tenant, block delete if assignments exist
-- [ ] 5.2 Create `PermissionsModule` — list seeded system permissions (global)
-- [ ] 5.3 Create `UserRole` assignment — assign/remove roles per user
-- [ ] 5.4 Create `@RequirePermission()` decorator + `PermissionsGuard` with memory cache (TTL 30s)
-- [ ] 5.5 Create seed script: Admin/Vendedor/Stock roles, ~20 permissions, default admin user
+- [x] 5.1 Create `RolesModule` CRUD — scoped by tenant, block delete if assignments exist
+- [x] 5.2 Create `PermissionsModule` — list seeded system permissions (global)
+- [x] 5.3 Create `UserRole` assignment — assign/remove roles per user
+- [x] 5.4 Create `@RequirePermission()` decorator + `PermissionsGuard` with memory cache (TTL 30s)
+- [x] 5.5 Create seed script: Admin/Vendedor/Stock roles, ~20 permissions, default admin user
 
 ## Phase 6: Testing
 

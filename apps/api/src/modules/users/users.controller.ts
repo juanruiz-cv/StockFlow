@@ -13,6 +13,7 @@ import {
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { AssignRoleDto } from './dto/assign-role.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 
 @Controller('users')
@@ -67,5 +68,31 @@ export class UsersController {
   async remove(@Param('id') id: string) {
     await this.usersService.softDelete(id);
     return { message: 'User deactivated successfully' };
+  }
+
+  /**
+   * POST /api/users/:userId/roles
+   * Assign a role to a user.
+   */
+  @Post(':userId/roles')
+  @HttpCode(HttpStatus.CREATED)
+  async assignRole(
+    @Param('userId') userId: string,
+    @Body() dto: AssignRoleDto,
+  ) {
+    return this.usersService.assignRole(userId, dto.roleId);
+  }
+
+  /**
+   * DELETE /api/users/:userId/roles/:roleId
+   * Remove a role from a user.
+   */
+  @Delete(':userId/roles/:roleId')
+  @HttpCode(HttpStatus.OK)
+  async removeRole(
+    @Param('userId') userId: string,
+    @Param('roleId') roleId: string,
+  ) {
+    return this.usersService.removeRole(userId, roleId);
   }
 }
