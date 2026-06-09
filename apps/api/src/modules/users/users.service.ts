@@ -5,7 +5,7 @@ import {
   BadRequestException,
 } from '@nestjs/common';
 import { InjectRepository, InjectDataSource } from '@nestjs/typeorm';
-import { Repository, DataSource } from 'typeorm';
+import { Repository, DataSource, IsNull } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { User } from '../../entities/user.entity';
 import { Role } from '../../entities/role.entity';
@@ -70,7 +70,7 @@ export class UsersService {
    */
   async findAll(): Promise<User[]> {
     return this.userRepository.find({
-      where: { deletedAt: null },
+      where: { deletedAt: IsNull() },
       order: { createdAt: 'DESC' },
     });
   }
@@ -81,7 +81,7 @@ export class UsersService {
    */
   async findById(id: string): Promise<User> {
     const user = await this.userRepository.findOne({
-      where: { id, deletedAt: null },
+      where: { id, deletedAt: IsNull() },
     });
     if (!user) {
       throw new NotFoundException('User not found');

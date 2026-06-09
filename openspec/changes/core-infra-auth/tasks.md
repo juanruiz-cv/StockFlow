@@ -63,10 +63,10 @@ Chain strategy: stacked-to-main
 
 ## Phase 6: Testing
 
-- [ ] 6.1 Unit test AuthService — validate credentials, JWT sign/verify
-- [ ] 6.2 Unit test UsersService — CRUD, duplicate email, soft-delete
-- [ ] 6.3 Unit test PermissionsGuard — allow/deny by permission
-- [ ] 6.4 Unit test JwtAuthGuard — reject missing/expired token
-- [ ] 6.5 Integration test login flow — POST /auth/login returns 200/401
-- [ ] 6.6 Integration test RLS isolation — tenant A/B cross-tenant invisibility
-- [ ] 6.7 Integration test permissions guard — 403 on missing `@RequirePermission`
+- [x] 6.1 Unit test AuthService — validate credentials, JWT sign/verify
+- [x] 6.2 Unit test UsersService — CRUD, duplicate email, soft-delete
+- [x] 6.3 Unit test PermissionsGuard — allow/deny by permission
+- [x] 6.4 Unit test JwtAuthGuard — reject missing/expired token
+- [x] 6.5 Integration test login flow — POST /auth/login returns 200/401
+- [x] 6.6 Integration test RLS isolation — tenant A/B cross-tenant invisibility
+- [x] 6.7 Integration test permissions guard — 403 on missing `@RequirePermission`
