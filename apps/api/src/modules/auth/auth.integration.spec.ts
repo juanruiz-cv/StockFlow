@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { UnauthorizedException, ForbiddenException, ExecutionContext } from '@nestjs/common';
+import { UnauthorizedException, ConflictException, ForbiddenException, ExecutionContext } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { getDataSourceToken, getRepositoryToken } from '@nestjs/typeorm';
 import { AuthController } from './auth.controller';
@@ -69,7 +69,8 @@ describe('Auth Integration (controller → service → mock deps)', () => {
   let usersService: jest.Mocked<UsersService>;
   let jwtService: jest.Mocked<JwtService>;
   let tenantContext: jest.Mocked<TenantContextService>;
-  let dataSource: { query: jest.Mock };
+  let dataSource: { query: jest.Mock; transaction: jest.Mock };
+  let mockManager: { query: jest.Mock };
 
   const mockUserRow = {
     id: 'user-1',
@@ -82,6 +83,8 @@ describe('Auth Integration (controller → service → mock deps)', () => {
 
   beforeEach(async () => {
     jest.clearAllMocks();
+
+    mockManager = { query: jest.fn() };
 
     const moduleRef: TestingModule = await Test.createTestingModule({
       controllers: [AuthController],
@@ -106,7 +109,10 @@ describe('Auth Integration (controller → service → mock deps)', () => {
         },
         {
           provide: getDataSourceToken(),
-          useValue: { query: jest.fn() },
+          useValue: {
+            query: jest.fn(),
+            transaction: jest.fn(),
+          },
         },
       ],
     }).compile();
@@ -117,6 +123,9 @@ describe('Auth Integration (controller → service → mock deps)', () => {
     jwtService = moduleRef.get(JwtService) as jest.Mocked<JwtService>;
     tenantContext = moduleRef.get(TenantContextService) as jest.Mocked<TenantContextService>;
     dataSource = moduleRef.get(getDataSourceToken());
+
+    // Default mock: transaction invokes callback with mockManager
+    dataSource.transaction.mockImplementation(async (cb: any) => cb(mockManager));
   });
 
   // ---------------------------------------------------------------------------
@@ -125,16 +134,18 @@ describe('Auth Integration (controller → service → mock deps)', () => {
   describe('6.5 POST /auth/login — login flow', () => {
     const loginCreds = { email: 'admin@store.com', password: 'correct-pw' };
 
-    it('should return { access_token, user } for valid credentials (200 equivalent)', async () => {
+    it('should return { access_token, refresh_token, user } for valid credentials (200 equivalent)', async () => {
       usersService.findByEmail.mockResolvedValue(mockUserRow);
       bcrypt.compare.mockResolvedValue(true);
       tenantContext.run.mockImplementation((_ctx: any, cb: Function) => cb());
       dataSource.query.mockResolvedValue([{ name: 'Admin' }]);
       jwtService.sign.mockReturnValue('int.token');
+      mockManager.query.mockResolvedValue(undefined); // INSERT succeeds
 
       const result = await authController.login(loginCreds);
 
       expect(result).toHaveProperty('access_token', 'int.token');
+      expect(result).toHaveProperty('refresh_token');
       expect(result).toHaveProperty('user');
       expect(result.user).toMatchObject({
         email: 'admin@store.com',
@@ -166,6 +177,89 @@ describe('Auth Integration (controller → service → mock deps)', () => {
       await expect(authController.login(loginCreds)).rejects.toThrow(
         UnauthorizedException,
       );
+    });
+  });
+
+  // ---------------------------------------------------------------------------
+  // 3.5  Integration test: POST /auth/refresh flow
+  // ---------------------------------------------------------------------------
+  describe('3.5 POST /auth/refresh — refresh flow', () => {
+    const validRefreshToken = 'some-uuid-refresh-token';
+
+    const mockTokenRow = {
+      id: 'token-1',
+      family_id: 'family-1',
+      user_id: 'user-1',
+      tenant_id: 'tenant-1',
+      is_used: false,
+      expires_at: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+    };
+
+    it('should return { access_token, refresh_token } for a valid refresh token', async () => {
+      // SELECT FOR UPDATE returns a valid unused token
+      mockManager.query.mockResolvedValue([mockTokenRow]);
+      // User lookup for JWT signing
+      dataSource.query.mockResolvedValue([{ id: 'user-1', email: 'admin@store.com' }]);
+      // Load roles
+      tenantContext.run.mockImplementation((_ctx: any, cb: Function) => cb());
+      jwtService.sign.mockReturnValue('new.int.token');
+
+      const result = await authController.refresh({ refresh_token: validRefreshToken });
+
+      expect(result).toHaveProperty('access_token', 'new.int.token');
+      expect(result).toHaveProperty('refresh_token');
+      expect(typeof result.refresh_token).toBe('string');
+    });
+
+    it('should throw 401 when refresh token is expired', async () => {
+      mockManager.query.mockResolvedValue([
+        { ...mockTokenRow, expires_at: new Date(Date.now() - 1000) },
+      ]);
+
+      await expect(
+        authController.refresh({ refresh_token: validRefreshToken }),
+      ).rejects.toThrow(UnauthorizedException);
+    });
+
+    it('should throw 401 when refresh token does not exist', async () => {
+      mockManager.query.mockResolvedValue([]);
+
+      await expect(
+        authController.refresh({ refresh_token: 'invalid-token' }),
+      ).rejects.toThrow(UnauthorizedException);
+    });
+
+    it('should throw 409 when refresh token was already used (theft detection)', async () => {
+      mockManager.query.mockResolvedValue([
+        { ...mockTokenRow, is_used: true },
+      ]);
+
+      await expect(
+        authController.refresh({ refresh_token: validRefreshToken }),
+      ).rejects.toThrow(ConflictException);
+    });
+
+    // Rotation chain: first refresh works, but reusing the stale token fails with 409
+    it('should allow rotation chain — first refresh succeeds, stale reuse fails', async () => {
+      // Step 1: first refresh succeeds with a clean token
+      mockManager.query.mockResolvedValue([mockTokenRow]);
+      dataSource.query.mockResolvedValue([{ id: 'user-1', email: 'admin@store.com' }]);
+      tenantContext.run.mockImplementation((_ctx: any, cb: Function) => cb());
+      jwtService.sign.mockReturnValue('new.int.token');
+
+      const firstResult = await authController.refresh({ refresh_token: validRefreshToken });
+      expect(firstResult).toHaveProperty('access_token', 'new.int.token');
+      expect(firstResult).toHaveProperty('refresh_token');
+
+      // Step 2: reusing the SAME refresh token should trigger theft detection
+      // Change the mock to simulate that the token is now marked is_used=true
+      mockManager.query.mockResolvedValue([
+        { ...mockTokenRow, is_used: true },
+      ]);
+
+      await expect(
+        authController.refresh({ refresh_token: validRefreshToken }),
+      ).rejects.toThrow(ConflictException);
     });
   });
 

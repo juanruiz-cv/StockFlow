@@ -10,6 +10,7 @@ import {
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
+import { RefreshDto } from './dto/refresh.dto';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
 
@@ -36,6 +37,18 @@ export class AuthController {
     }
 
     return this.authService.login(user);
+  }
+
+  /**
+   * POST /api/auth/refresh
+   *
+   * Accepts a refresh_token and returns a new access_token + refresh_token pair.
+   * Implements token rotation with theft detection (409 on reused token).
+   */
+  @Post('refresh')
+  @HttpCode(HttpStatus.OK)
+  async refresh(@Body() refreshDto: RefreshDto) {
+    return this.authService.refresh(refreshDto);
   }
 
   /**
