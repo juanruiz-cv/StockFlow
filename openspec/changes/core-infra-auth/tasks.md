@@ -41,17 +41,17 @@ Chain strategy: stacked-to-main
 
 ## Phase 3: Auth Module
 
-- [ ] 3.1 Create `AuthModule` with `@nestjs/jwt` + `passport-jwt`
-- [ ] 3.2 Create `JwtStrategy` — validate token, extract sub/email/tenant_id/roles
-- [ ] 3.3 Create `JwtAuthGuard` — Bearer validation, configurable global/route
-- [ ] 3.4 Create `POST /auth/login` — find user, bcrypt verify, sign JWT with tenant_id
-- [ ] 3.5 Create `GET /auth/me` — DB lookup returning current user profile
+- [x] 3.1 Create `AuthModule` with `@nestjs/jwt` + `passport-jwt`
+- [x] 3.2 Create `JwtStrategy` — validate token, extract sub/email/tenant_id/roles
+- [x] 3.3 Create `JwtAuthGuard` — Bearer validation, configurable global/route
+- [x] 3.4 Create `POST /auth/login` — find user, bcrypt verify, sign JWT with tenant_id
+- [x] 3.5 Create `GET /auth/me` — DB lookup returning current user profile
 
 ## Phase 4: Users Module
 
-- [ ] 4.1 Create `UsersModule` — controller + service, CRUD scoped by tenant via RLS
-- [ ] 4.2 Implement soft-delete via `deleted_at` timestamp
-- [ ] 4.3 Add email-unique-per-tenant constraint + bcrypt hash on user creation
+- [x] 4.1 Create `UsersModule` — controller + service, CRUD scoped by tenant via RLS
+- [x] 4.2 Implement soft-delete via `deleted_at` timestamp
+- [x] 4.3 Add email-unique-per-tenant constraint + bcrypt hash on user creation
 
 ## Phase 5: Roles & Permissions
 

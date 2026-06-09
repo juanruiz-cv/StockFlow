@@ -4,6 +4,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { configValidationSchema } from './config/env.config';
 import { typeOrmConfig } from './config/database.config';
 import { TenantModule } from './common/tenants/tenant.module';
+import { AuthModule } from './modules/auth/auth.module';
+import { UsersModule } from './modules/users/users.module';
 
 @Module({
   imports: [
@@ -14,6 +16,8 @@ import { TenantModule } from './common/tenants/tenant.module';
     }),
     TypeOrmModule.forRootAsync(typeOrmConfig),
     TenantModule,
+    AuthModule,
+    UsersModule,
   ],
 })
 export class AppModule {}

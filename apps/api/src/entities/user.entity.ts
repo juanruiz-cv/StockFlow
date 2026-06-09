@@ -7,11 +7,13 @@ import {
   ManyToOne,
   JoinColumn,
   OneToMany,
+  Unique,
 } from 'typeorm';
 import { Tenant } from './tenant.entity';
 import { UserRole } from './user-role.entity';
 
 @Entity('users')
+@Unique(['tenantId', 'email'])
 export class User {
   @PrimaryGeneratedColumn('uuid')
   id!: string;
@@ -23,10 +25,10 @@ export class User {
   @JoinColumn({ name: 'tenant_id' })
   tenant!: Tenant;
 
-  @Column({ type: 'varchar', unique: true, length: 255 })
+  @Column({ type: 'varchar', length: 255 })
   email!: string;
 
-  @Column({ name: 'password_hash', type: 'varchar', length: 255 })
+  @Column({ name: 'password_hash', type: 'varchar', length: 255, select: false })
   passwordHash!: string;
 
   @Column({ type: 'varchar', length: 255 })
