@@ -15,18 +15,20 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { AssignRoleDto } from './dto/assign-role.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { PermissionsGuard } from '../../common/guards/permissions.guard';
+import { RequirePermission } from '../../common/decorators/require-permission.decorator';
 
 @Controller('users')
-@UseGuards(JwtAuthGuard)
+@UseGuards(JwtAuthGuard, PermissionsGuard)
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   /**
    * POST /api/users
    * Create a new user within the current tenant.
-   * Currently requires auth; permissions check to be added in PR 3.
    */
   @Post()
+  @RequirePermission('users:write')
   @HttpCode(HttpStatus.CREATED)
   async create(@Body() dto: CreateUserDto) {
     return this.usersService.create(dto);
@@ -37,6 +39,7 @@ export class UsersController {
    * List all non-deleted users in the current tenant.
    */
   @Get()
+  @RequirePermission('users:read')
   async findAll() {
     return this.usersService.findAll();
   }
@@ -46,6 +49,7 @@ export class UsersController {
    * Get a user by ID within the current tenant.
    */
   @Get(':id')
+  @RequirePermission('users:read')
   async findOne(@Param('id') id: string) {
     return this.usersService.findById(id);
   }
@@ -55,6 +59,7 @@ export class UsersController {
    * Update user fields (email, name, active status).
    */
   @Patch(':id')
+  @RequirePermission('users:write')
   async update(@Param('id') id: string, @Body() dto: UpdateUserDto) {
     return this.usersService.update(id, dto);
   }
@@ -64,6 +69,7 @@ export class UsersController {
    * Soft-delete a user (sets deleted_at timestamp).
    */
   @Delete(':id')
+  @RequirePermission('users:delete')
   @HttpCode(HttpStatus.OK)
   async remove(@Param('id') id: string) {
     await this.usersService.softDelete(id);
@@ -75,6 +81,7 @@ export class UsersController {
    * Assign a role to a user.
    */
   @Post(':userId/roles')
+  @RequirePermission('users:write')
   @HttpCode(HttpStatus.CREATED)
   async assignRole(
     @Param('userId') userId: string,
@@ -88,6 +95,7 @@ export class UsersController {
    * Remove a role from a user.
    */
   @Delete(':userId/roles/:roleId')
+  @RequirePermission('users:write')
   @HttpCode(HttpStatus.OK)
   async removeRole(
     @Param('userId') userId: string,

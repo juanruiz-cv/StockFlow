@@ -27,13 +27,6 @@
   },
   "plugins": [
     {
-      "plugin": "@nx/nest/plugin",
-      "options": {
-        "buildTarget": "build",
-        "serveTarget": "serve"
-      }
-    },
-    {
       "plugin": "@nx/angular/plugin",
       "options": {
         "buildTarget": "build",
