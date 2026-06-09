@@ -3,28 +3,30 @@
 schema: spec-driven
 
 context: |
-  Project: app
-  Stack: none detected (empty project)
-  Architecture: not yet established
-  Testing: no test runner detected — greenfield project
+  Project: StockFlow (app)
+  Stack: Nx 21 monorepo | NestJS 11 API (apps/api) | Angular 20 skeleton (apps/web) | Shared lib (libs/shared)
+  Database: TypeORM + PostgreSQL 17 via Docker (docker/docker-compose.yml)
+  Architecture: Modular NestJS (auth, users, roles, permissions modules) with tenant-scoped entities
+  Testing: Jest 29 via @nx/jest — 7 test suites, ~51 tests (4 unit + 2 integration + 1 placeholder)
   Persistence: openspec
+  Git: https://github.com/juanruiz-cv/StockFlow.git
 
 testing:
   strict_tdd: false
   runner:
-    command: ""
-    framework: none
+    command: npx nx test api
+    framework: jest
   layers:
-    unit: false
-    integration: false
+    unit: true
+    integration: true
     e2e: false
   coverage:
-    available: false
-    command: ""
+    available: true
+    command: npx nx test api --coverage
   quality:
-    linter: ""
-    type_checker: ""
-    formatter: ""
+    linter: npx nx lint api
+    type_checker: npx tsc --noEmit
+    formatter: npx nx format:write
 
 rules:
   proposal:
@@ -39,12 +41,13 @@ rules:
     - Group by phase, use hierarchical numbering
     - Keep tasks completable in one session
   apply:
-    - Follow existing code patterns
+    - Follow existing NestJS modular patterns
+    - Run tests before committing changes
     tdd: false
-    test_command: ""
+    test_command: npx nx test api
   verify:
-    test_command: ""
-    build_command: ""
+    test_command: npx nx run-many -t test --all
+    build_command: npx nx run-many -t build --all
     coverage_threshold: 0
   archive:
     - Warn before merging destructive deltas

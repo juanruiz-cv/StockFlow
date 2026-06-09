@@ -11,3 +11,6 @@ coverage/
 .idea/
 *.tsbuildinfo
 jest-output/
+
+# Nx workspace data (generated — not needed in repo)
+.nx/
