@@ -9,11 +9,11 @@
 | Chained PRs recommended | Yes |
 | Suggested split | PR 1 → PR 2 → PR 3 → PR 4 |
 | Delivery strategy | ask-on-risk |
-| Chain strategy | pending |
+| Chain strategy | stacked-to-main |
 
 Decision needed before apply: Yes
 Chained PRs recommended: Yes
-Chain strategy: pending
+Chain strategy: stacked-to-main
 400-line budget risk: High
 
 ### Suggested Work Units
@@ -27,17 +27,17 @@ Chain strategy: pending
 
 ## Phase 1: Workspace & Tooling
 
-- [ ] 1.1 Create Nx workspace `--preset=apps`, install `@nx/nest`, `@nx/angular`
-- [ ] 1.2 Create `docker/Dockerfile` multi-stage (node:22-alpine) + `docker/docker-compose.yml` (PostgreSQL 17)
-- [ ] 1.3 Create `.env`, env validation with `@nestjs/config` + Joi
-- [ ] 1.4 Create `apps/api/src/main.ts`, `app.module.ts` — NestJS bootstrap
+- [x] 1.1 Create Nx workspace `--preset=apps`, install `@nx/nest`, `@nx/angular`
+- [x] 1.2 Create `docker/Dockerfile` multi-stage (node:22-alpine) + `docker/docker-compose.yml` (PostgreSQL 17)
+- [x] 1.3 Create `.env`, env validation with `@nestjs/config` + Joi
+- [x] 1.4 Create `apps/api/src/main.ts`, `app.module.ts` — NestJS bootstrap
 
 ## Phase 2: Database & Tenant Isolation
 
-- [ ] 2.1 Create 6 TypeORM entities: Tenant, User, Role, Permission, UserRole, RolePermission
-- [ ] 2.2 Create migration `001-init.sql` — schema + RLS policies + indexes
-- [ ] 2.3 Create ALS tenant context + middleware extracting tenant_id from JWT
-- [ ] 2.4 Create TypeORM RLS subscriber — `SET app.current_tenant_id` pre-query
+- [x] 2.1 Create 6 TypeORM entities: Tenant, User, Role, Permission, UserRole, RolePermission
+- [x] 2.2 Create migration `001-init.sql` — schema + RLS policies + indexes
+- [x] 2.3 Create ALS tenant context + middleware extracting tenant_id from JWT
+- [x] 2.4 Create TypeORM RLS subscriber — `SET app.current_tenant_id` pre-query
 
 ## Phase 3: Auth Module
 
