@@ -45,12 +45,12 @@ Chain strategy: stacked-to-main
 
 ## PR 4 — Stock
 
-- [ ] 4.1 `features/stock/models.ts`
-- [ ] 4.2 `features/stock/stock.service.ts`
-- [ ] 4.3 `features/stock/stock.page.ts`
-- [ ] 4.4 `features/stock/movement-list.page.ts`
-- [ ] 4.5 `features/stock/movement-form.page.ts`
-- [ ] 4.6 Route + test
+- [x] 4.1 `features/stock/models.ts`
+- [x] 4.2 `features/stock/stock.service.ts`
+- [x] 4.3 `features/stock/stock.page.ts`
+- [x] 4.4 `features/stock/movement-list.page.ts`
+- [x] 4.5 `features/stock/movement-form.page.ts`
+- [x] 4.6 Route + test
 
 ## PR 5 — Caja
 
