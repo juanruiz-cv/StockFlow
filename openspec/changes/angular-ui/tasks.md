@@ -25,15 +25,15 @@ Chain strategy: stacked-to-main
 
 ## PR 2 — Products
 
-- [ ] 2.1 `shared/ui/table.ts` — CDK sortable/paginated
-- [ ] 2.2 `shared/ui/search-input.ts`
+- [x] 2.1 `shared/ui/table.ts` — CDK sortable/paginated
+- [x] 2.2 `shared/ui/search-input.ts`
 - [ ] 2.3 `shared/ui/page-shell.ts`
-- [ ] 2.4 `features/products/models.ts`
-- [ ] 2.5 `features/products/product.service.ts`
-- [ ] 2.6 `features/products/product-list.page.ts`
-- [ ] 2.7 `features/products/product-form.page.ts`
-- [ ] 2.8 Category/brand/supplier list + form pages
-- [ ] 2.9 Test: list, validation, search, duplicate SKU
+- [x] 2.4 `features/products/models.ts`
+- [x] 2.5 `features/products/product.service.ts`
+- [x] 2.6 `features/products/product-list.page.ts`
+- [x] 2.7 `features/products/product-form.page.ts`
+- [x] 2.8 Category/brand/supplier list + form pages
+- [x] 2.9 Test: list, validation, search, duplicate SKU
 
 ## PR 3 — Customers
 
