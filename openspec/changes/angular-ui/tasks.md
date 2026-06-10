@@ -54,11 +54,11 @@ Chain strategy: stacked-to-main
 
 ## PR 5 — Caja
 
-- [ ] 5.1 `features/caja/models.ts`
-- [ ] 5.2 `features/caja/caja.service.ts`
-- [ ] 5.3 `features/caja/session.page.ts`
-- [ ] 5.4 `features/caja/movement-list.page.ts`
-- [ ] 5.5 Route + test
+- [x] 5.1 `features/caja/models.ts`
+- [x] 5.2 `features/caja/caja.service.ts`
+- [x] 5.3 `features/caja/session.page.ts`
+- [x] 5.4 `features/caja/movement-list.page.ts`
+- [x] 5.5 Route + test
 
 ## PR 6 — POS
 
