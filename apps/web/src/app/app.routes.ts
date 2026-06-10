@@ -40,6 +40,11 @@ export const routes: Routes = [
         loadChildren: () =>
           import('./features/sales/sales.routes').then((m) => m.salesRoutes),
       },
+      {
+        path: 'admin',
+        loadChildren: () =>
+          import('./features/admin/admin.routes').then((m) => m.adminRoutes),
+      },
       { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
     ],
   },

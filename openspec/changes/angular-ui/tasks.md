@@ -71,13 +71,13 @@ Chain strategy: stacked-to-main
 - [x] 6.7 `features/sales/sale-history.page.ts`
 - [x] 6.8 Route + test
 
-## PR 7 — Admin
+## PR 7 — Admin ✅
 
-- [ ] 7.1 `features/admin/models.ts`
-- [ ] 7.2 `features/admin/admin.service.ts`
-- [ ] 7.3 `features/admin/user-list.page.ts`
-- [ ] 7.4 `features/admin/user-form.page.ts`
-- [ ] 7.5 `features/admin/role-list.page.ts`
-- [ ] 7.6 `features/admin/role-form.page.ts`
-- [ ] 7.7 `*appCan` directive
-- [ ] 7.8 Route + test
+- [x] 7.1 `features/admin/models.ts`
+- [x] 7.2 `features/admin/admin.service.ts`
+- [x] 7.3 `features/admin/user-list.page.ts`
+- [x] 7.4 `features/admin/user-form.page.ts`
+- [x] 7.5 `features/admin/role-list.page.ts`
+- [x] 7.6 `features/admin/role-form.page.ts`
+- [x] 7.7 `*appCan` directive
+- [x] 7.8 Route + test
