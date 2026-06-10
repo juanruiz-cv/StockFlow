@@ -62,14 +62,14 @@ Chain strategy: stacked-to-main
 
 ## PR 6 — POS
 
-- [ ] 6.1 `features/sales/models.ts`
-- [ ] 6.2 `features/sales/sale.service.ts`
-- [ ] 6.3 `shared/ui/modal.ts`
-- [ ] 6.4 `shared/ui/confirm-dialog.ts`
-- [ ] 6.5 `shared/ui/toast.ts`
-- [ ] 6.6 `features/sales/pos.page.ts`
-- [ ] 6.7 `features/sales/sale-history.page.ts`
-- [ ] 6.8 Route + test
+- [x] 6.1 `features/sales/models.ts`
+- [x] 6.2 `features/sales/sale.service.ts`
+- [x] 6.3 `shared/ui/modal.ts`
+- [x] 6.4 `shared/ui/confirm-dialog.ts`
+- [x] 6.5 `shared/ui/toast.ts`
+- [x] 6.6 `features/sales/pos.page.ts`
+- [x] 6.7 `features/sales/sale-history.page.ts`
+- [x] 6.8 Route + test
 
 ## PR 7 — Admin
 
