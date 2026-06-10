@@ -15,6 +15,11 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./features/dashboard/dashboard.page').then((m) => m.DashboardPage),
       },
+      {
+        path: 'products',
+        loadChildren: () =>
+          import('./features/products/products.routes').then((m) => m.productsRoutes),
+      },
       { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
     ],
   },
