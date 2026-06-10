@@ -27,7 +27,7 @@ Chain strategy: stacked-to-main
 
 - [x] 2.1 `shared/ui/table.ts` — CDK sortable/paginated
 - [x] 2.2 `shared/ui/search-input.ts`
-- [ ] 2.3 `shared/ui/page-shell.ts`
+- [x] 2.3 `shared/ui/page-shell.ts` (implementado en `layout/page-shell.ts`)
 - [x] 2.4 `features/products/models.ts`
 - [x] 2.5 `features/products/product.service.ts`
 - [x] 2.6 `features/products/product-list.page.ts`
@@ -37,11 +37,11 @@ Chain strategy: stacked-to-main
 
 ## PR 3 — Customers
 
-- [ ] 3.1 `features/customers/models.ts`
-- [ ] 3.2 `features/customers/customer.service.ts`
-- [ ] 3.3 `features/customers/customer-list.page.ts`
-- [ ] 3.4 `features/customers/customer-form.page.ts`
-- [ ] 3.5 Route + test
+- [x] 3.1 `features/customers/models.ts`
+- [x] 3.2 `features/customers/customer.service.ts`
+- [x] 3.3 `features/customers/customer-list.page.ts`
+- [x] 3.4 `features/customers/customer-form.page.ts`
+- [x] 3.5 Route + test
 
 ## PR 4 — Stock
 
