@@ -15,6 +15,6 @@ import { UserRole } from '../../entities/user-role.entity';
 @Module({
   imports: [TypeOrmModule.forFeature([UserRole])],
   providers: [PermissionCacheService, PermissionsGuard],
-  exports: [PermissionCacheService, PermissionsGuard],
+  exports: [PermissionCacheService, PermissionsGuard, TypeOrmModule],
 })
 export class CacheModule {}

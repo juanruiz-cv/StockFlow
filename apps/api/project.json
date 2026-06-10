@@ -26,7 +26,7 @@
       "executor": "@nx/js:node",
       "options": {
         "buildTarget": "api:build",
-        "port": 3000
+        "port": 9229
       },
       "configurations": {
         "production": {

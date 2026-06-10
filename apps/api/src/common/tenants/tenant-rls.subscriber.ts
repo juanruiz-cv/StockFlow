@@ -11,24 +11,36 @@ import { TenantContextService } from './tenant-context.service';
  *
  * This enables PostgreSQL Row-Level Security policies to filter rows
  * based on the current tenant without application-level WHERE clauses.
+ *
+ * NOTE: This subscriber is instantiated by TypeORM, not by NestJS DI.
+ * The TenantContextService is set via a static setter from the NestJS module
+ * after initialization.
  */
 @EventSubscriber()
 export class TenantRlsSubscriber implements EntitySubscriberInterface {
-  constructor(
-    private readonly dataSource: DataSource,
-    private readonly tenantContext: TenantContextService,
-  ) {}
+  private static contextService: TenantContextService | null = null;
+
+  /**
+   * Called by NestJS after module init to provide the tenant context service.
+   */
+  static setContextService(service: TenantContextService): void {
+    TenantRlsSubscriber.contextService = service;
+  }
+
+  constructor(private readonly dataSource: DataSource) {}
 
   /**
    * Called before any query is executed.
    * Sets the `app.current_tenant_id` session variable to the current
    * tenant ID from the AsyncLocalStorage context.
-   *
-   * Uses `set_config(..., true)` for local (session-scoped) setting
-   * that is automatically reset at transaction end.
    */
   async beforeQuery(): Promise<void> {
-    const tenantId = this.tenantContext.getTenantId();
+    const service = TenantRlsSubscriber.contextService;
+    if (!service) {
+      return; // Tenant context not available yet
+    }
+
+    const tenantId = service.getTenantId();
     if (!tenantId) {
       return; // No tenant context — skip (e.g., unauthenticated routes)
     }
@@ -39,8 +51,7 @@ export class TenantRlsSubscriber implements EntitySubscriberInterface {
         [tenantId],
       );
     } catch {
-      // Silently ignore — if the session variable fails, RLS will
-      // block the query, which is the correct security behavior.
+      // Silently ignore
     }
   }
 }
