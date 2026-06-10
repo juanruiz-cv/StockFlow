@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { ConfigService } from '@nestjs/config';
-import { JwtPayload } from '@stockflow/shared';
+import { JwtPayload } from '../../../common/interfaces/jwt-payload.interface';
 
 /**
  * Passport JWT strategy that validates Bearer tokens.
