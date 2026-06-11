@@ -14,7 +14,7 @@ import { ComponentPortal } from '@angular/cdk/portal';
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div class="fixed inset-0 z-50 flex items-center justify-center">
+    <div class="fixed inset-0 z-50 flex items-center justify-center" role="alertdialog" aria-modal="true" aria-label="Confirmación">
       <div class="fixed inset-0 bg-black/50"></div>
       <div class="relative z-10 mx-4 w-full max-w-sm rounded-lg bg-white p-6 shadow-xl">
         <p class="text-sm text-gray-600">{{ message() }}</p>
@@ -22,14 +22,14 @@ import { ComponentPortal } from '@angular/cdk/portal';
           <button
             type="button"
             (click)="cancel.emit()"
-            class="rounded-lg border border-gray-300 px-4 py-2 text-sm hover:bg-gray-50"
+            class="rounded-lg border border-gray-300 px-4 py-2 text-sm transition-all duration-150 hover:bg-gray-50 active:scale-[0.98]"
           >
             Cancelar
           </button>
           <button
             type="button"
             (click)="confirm.emit()"
-            class="rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700"
+            class="rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white transition-all duration-150 hover:bg-red-700 active:scale-[0.98]"
           >
             {{ confirmLabel() }}
           </button>

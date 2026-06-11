@@ -25,7 +25,7 @@ import { Product } from '../products/models';
           <button
             type="button"
             (click)="selectTab(tab.value)"
-            class="flex-1 rounded-md px-4 py-2 text-sm font-medium transition-colors"
+            class="flex-1 rounded-md px-4 py-2 text-sm font-medium transition-all duration-150 active:scale-[0.98]"
             [class.bg-white]="movementType() === tab.value"
             [class.text-gray-900]="movementType() === tab.value"
             [class.shadow-sm]="movementType() === tab.value"
@@ -130,7 +130,7 @@ import { Product } from '../products/models';
           <button
             type="submit"
             [disabled]="submitting()"
-            class="cursor-pointer rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors duration-150 hover:bg-blue-700 disabled:opacity-50"
+            class="cursor-pointer rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-all duration-150 hover:bg-blue-700 active:scale-[0.98] disabled:opacity-50"
           >
             {{ submitting() ? 'Guardando...' : submitLabel() }}
           </button>

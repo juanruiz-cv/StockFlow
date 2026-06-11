@@ -8,6 +8,7 @@ import { RouterLink } from '@angular/router';
   imports: [RouterLink],
   template: `
     <div class="space-y-6">
+      <div class="mb-1 h-1 w-10 rounded-full bg-blue-500"></div>
       <h1 class="text-2xl font-bold text-gray-900">Dashboard</h1>
 
       <p class="text-gray-600">
@@ -17,7 +18,7 @@ import { RouterLink } from '@angular/router';
       <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         <a
           routerLink="/products"
-          class="cursor-pointer rounded-lg border border-gray-100 bg-white p-6 shadow transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg"
+          class="cursor-pointer rounded-lg border border-gray-100 bg-white p-6 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.98]"
         >
           <h3 class="flex items-center gap-2 text-lg font-semibold">
             <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-100 text-sm text-blue-600">⊞</span>
@@ -30,7 +31,7 @@ import { RouterLink } from '@angular/router';
 
         <a
           routerLink="/customers"
-          class="cursor-pointer rounded-lg border border-gray-100 bg-white p-6 shadow transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg"
+          class="cursor-pointer rounded-lg border border-gray-100 bg-white p-6 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.98]"
         >
           <h3 class="flex items-center gap-2 text-lg font-semibold">
             <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-100 text-sm text-blue-600">◉</span>
@@ -43,7 +44,7 @@ import { RouterLink } from '@angular/router';
 
         <a
           routerLink="/stock"
-          class="cursor-pointer rounded-lg border border-gray-100 bg-white p-6 shadow transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg"
+          class="cursor-pointer rounded-lg border border-gray-100 bg-white p-6 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.98]"
         >
           <h3 class="flex items-center gap-2 text-lg font-semibold">
             <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-100 text-sm text-blue-600">☰</span>
@@ -56,7 +57,7 @@ import { RouterLink } from '@angular/router';
 
         <a
           routerLink="/caja"
-          class="cursor-pointer rounded-lg border border-gray-100 bg-white p-6 shadow transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg"
+          class="cursor-pointer rounded-lg border border-gray-100 bg-white p-6 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.98]"
         >
           <h3 class="flex items-center gap-2 text-lg font-semibold">
             <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-100 text-sm text-blue-600">$</span>
@@ -69,7 +70,7 @@ import { RouterLink } from '@angular/router';
 
         <a
           routerLink="/sales"
-          class="cursor-pointer rounded-lg border border-gray-100 bg-white p-6 shadow transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg"
+          class="cursor-pointer rounded-lg border border-gray-100 bg-white p-6 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.98]"
         >
           <h3 class="flex items-center gap-2 text-lg font-semibold">
             <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-100 text-sm text-blue-600">⌘</span>

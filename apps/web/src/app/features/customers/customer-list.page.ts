@@ -18,7 +18,7 @@ import { Customer } from './models';
         <h1 class="text-2xl font-bold text-gray-900">Clientes</h1>
         <a
           routerLink="/customers/new"
-          class="cursor-pointer rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors duration-150 hover:bg-blue-700"
+          class="cursor-pointer rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-all duration-150 hover:bg-blue-700 active:scale-[0.98]"
         >
           + Nuevo Cliente
         </a>
@@ -70,11 +70,11 @@ import { Customer } from './models';
                 <td class="px-4 py-3">{{ customer.created_at | date:'shortDate' }}</td>
                 <td class="px-4 py-3">
                   <div class="flex gap-3">
-                    <a [routerLink]="['/customers', customer.id]" class="text-sm text-blue-600 transition-colors duration-150 hover:text-blue-800">Editar</a>
+                    <a [routerLink]="['/customers', customer.id]" class="text-sm text-blue-600 transition-all duration-150 hover:text-blue-800 active:scale-[0.97]">Editar</a>
                     @if (customer.activo) {
-                      <button (click)="confirmDelete(customer)" class="cursor-pointer text-sm text-red-600 transition-colors duration-150 hover:text-red-800">Eliminar</button>
+                      <button type="button" (click)="confirmDelete(customer)" class="cursor-pointer text-sm text-red-600 transition-all duration-150 hover:text-red-800 active:scale-[0.97]">Eliminar</button>
                     } @else {
-                      <button (click)="restore(customer)" class="cursor-pointer text-sm text-green-600 transition-colors duration-150 hover:text-green-800">Restaurar</button>
+                      <button type="button" (click)="restore(customer)" class="cursor-pointer text-sm text-green-600 transition-all duration-150 hover:text-green-800 active:scale-[0.97]">Restaurar</button>
                     }
                   </div>
                 </td>
@@ -141,13 +141,14 @@ import { Customer } from './models';
             <div class="mt-6 flex justify-end gap-3">
               <button
                 (click)="cancelDelete()"
-                class="cursor-pointer rounded-lg border border-gray-300 px-4 py-2 text-sm transition-colors duration-150 hover:bg-gray-50"
+                class="cursor-pointer rounded-lg border border-gray-300 px-4 py-2 text-sm transition-all duration-150 hover:bg-gray-50 active:scale-[0.98]"
               >
                 Cancelar
               </button>
               <button
+                type="button"
                 (click)="executeDelete()"
-                class="cursor-pointer rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white transition-colors duration-150 hover:bg-red-700"
+                class="cursor-pointer rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white transition-all duration-150 hover:bg-red-700 active:scale-[0.98]"
               >
                 Eliminar
               </button>

@@ -9,7 +9,8 @@ import { HttpErrorResponse } from '@angular/common/http';
   imports: [ReactiveFormsModule],
   template: `
     <div class="flex min-h-screen items-center justify-center bg-gray-100">
-      <div class="w-full max-w-md rounded-lg bg-white p-8 shadow-md">
+      <div class="w-full max-w-md rounded-lg bg-white p-8 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.08),0_4px_12px_-2px_rgba(0,0,0,0.05)]">
+        <div class="mx-auto mb-4 h-1 w-10 rounded-full bg-blue-500"></div>
         <h1 class="mb-6 text-center text-2xl font-bold text-gray-900">
           StockFlow
         </h1>
@@ -33,15 +34,19 @@ import { HttpErrorResponse } from '@angular/common/http';
               for="email"
               class="block text-sm font-medium text-gray-700"
             >
-              Email
+              Email <span class="text-red-500">*</span>
             </label>
             <input
               id="email"
               type="email"
               formControlName="email"
+              autocomplete="email"
               class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
               placeholder="correo@ejemplo.com"
             />
+            @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
+              <p class="mt-1 text-xs text-red-500">Email inválido</p>
+            }
           </div>
 
           <div>
@@ -49,21 +54,25 @@ import { HttpErrorResponse } from '@angular/common/http';
               for="password"
               class="block text-sm font-medium text-gray-700"
             >
-              Contraseña
+              Contraseña <span class="text-red-500">*</span>
             </label>
             <input
               id="password"
               type="password"
               formControlName="password"
+              autocomplete="current-password"
               class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
               placeholder="••••••••"
             />
+            @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+              <p class="mt-1 text-xs text-red-500">Contraseña requerida</p>
+            }
           </div>
 
           <button
             type="submit"
             [disabled]="loginForm.invalid || loading()"
-            class="w-full cursor-pointer rounded-md bg-blue-600 px-4 py-2 text-white transition-colors duration-200 hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
+            class="w-full cursor-pointer rounded-md bg-blue-600 px-4 py-2 text-white transition-all duration-200 hover:bg-blue-700 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
           >
             {{ loading() ? 'Ingresando...' : 'Ingresar' }}
           </button>

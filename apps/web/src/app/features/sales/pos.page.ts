@@ -122,8 +122,9 @@ import type { CartItem } from './models';
                     <button
                       type="button"
                       (click)="adjustQuantity(item.product_id, -1)"
-                      class="flex h-7 w-7 cursor-pointer items-center justify-center rounded-md border border-gray-300 text-sm transition-colors duration-150 hover:bg-gray-50"
-                    >
+                      class="flex h-7 w-7 cursor-pointer items-center justify-center rounded-md border border-gray-300 text-sm transition-all duration-150 hover:bg-gray-50 active:scale-[0.97]"
+                    aria-label="Reducir cantidad"
+                  >
                       −
                     </button>
                     <span class="w-6 text-center text-sm font-medium">{{
@@ -132,8 +133,9 @@ import type { CartItem } from './models';
                     <button
                       type="button"
                       (click)="adjustQuantity(item.product_id, 1)"
-                      class="flex h-7 w-7 cursor-pointer items-center justify-center rounded-md border border-gray-300 text-sm transition-colors duration-150 hover:bg-gray-50"
-                    >
+                      class="flex h-7 w-7 cursor-pointer items-center justify-center rounded-md border border-gray-300 text-sm transition-all duration-150 hover:bg-gray-50 active:scale-[0.97]"
+                    aria-label="Aumentar cantidad"
+                  >
                       +
                     </button>
                   </div>
@@ -144,7 +146,7 @@ import type { CartItem } from './models';
                     <button
                       type="button"
                       (click)="removeFromCart(item.product_id)"
-                      class="cursor-pointer text-xs text-red-500 transition-colors duration-150 hover:text-red-700"
+                      class="cursor-pointer text-xs text-red-500 transition-all duration-150 hover:text-red-700 active:scale-[0.97]"
                     >
                       Quitar
                     </button>
@@ -165,7 +167,7 @@ import type { CartItem } from './models';
                 <button
                   type="button"
                   (click)="openPaymentModal()"
-                  class="mt-4 w-full cursor-pointer rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors duration-150 hover:bg-blue-700"
+                  class="mt-4 w-full cursor-pointer rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-all duration-150 hover:bg-blue-700 active:scale-[0.98]"
                 >
                   Cobrar
                 </button>
@@ -232,14 +234,14 @@ import type { CartItem } from './models';
           <button
             type="button"
             (click)="paymentModalOpen.set(false)"
-            class="cursor-pointer rounded-lg border border-gray-300 px-4 py-2 text-sm transition-colors duration-150 hover:bg-gray-50"
+            class="cursor-pointer rounded-lg border border-gray-300 px-4 py-2 text-sm transition-all duration-150 hover:bg-gray-50 active:scale-[0.98]"
           >
             Cancelar
           </button>
           <button
             type="submit"
             [disabled]="submitting() || paymentForm.invalid || calculatedChange() < 0"
-            class="cursor-pointer rounded-lg bg-green-600 px-4 py-2 text-sm font-medium text-white transition-colors duration-150 hover:bg-green-700 disabled:opacity-50"
+            class="cursor-pointer rounded-lg bg-green-600 px-4 py-2 text-sm font-medium text-white transition-all duration-150 hover:bg-green-700 active:scale-[0.98] disabled:opacity-50"
           >
             {{ submitting() ? 'Procesando...' : 'Confirmar Pago' }}
           </button>

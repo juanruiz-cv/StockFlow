@@ -128,7 +128,7 @@ import { Categoria, Marca, Proveedor } from "./models";
 
         <div class="flex justify-end gap-3">
           <a routerLink="/products" class="cursor-pointer rounded-lg border border-gray-300 px-4 py-2 text-sm transition-colors duration-150 hover:bg-gray-50">Cancelar</a>
-          <button type="submit" [disabled]="submitting()" class="cursor-pointer rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors duration-150 hover:bg-blue-700 disabled:opacity-50">
+          <button type="submit" [disabled]="submitting()" class="cursor-pointer rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-all duration-150 hover:bg-blue-700 active:scale-[0.98] disabled:opacity-50">
             {{ submitting() ? "Guardando..." : isEditing() ? "Actualizar" : "Crear Producto" }}
           </button>
         </div>

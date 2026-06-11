@@ -62,4 +62,5 @@ Write-Host "===========================================" -ForegroundColor Cyan
 Write-Host "  API: http://localhost:3000/api" -ForegroundColor White
 Write-Host "  Web: http://localhost:4200" -ForegroundColor White
 Write-Host "  Login: admin@example.com / admin123" -ForegroundColor White
+Write-Host "  Skill UI/UX: .opencode/skills/ui-ux-pro-max/" -ForegroundColor White
 Write-Host "===========================================" -ForegroundColor Cyan

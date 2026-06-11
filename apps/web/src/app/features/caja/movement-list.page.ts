@@ -17,7 +17,7 @@ import { CashSession, CashMovement } from './models';
         <h1 class="text-2xl font-bold text-gray-900">Movimientos de Caja</h1>
         <a
           routerLink="/caja"
-          class="cursor-pointer rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 transition-colors duration-150 hover:bg-gray-50"
+          class="cursor-pointer rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 transition-all duration-150 hover:bg-gray-50 active:scale-[0.98]"
         >
           &larr; Volver a Caja
         </a>

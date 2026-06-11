@@ -29,8 +29,9 @@ import { MENU_ITEMS } from './sidebar-item';
         @for (item of visibleMenuItems(); track item.path) {
           <a
             [routerLink]="item.path"
-            routerLinkActive="bg-blue-700"
-            class="flex cursor-pointer items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors duration-200 hover:bg-gray-700"
+            routerLinkActive="bg-blue-700 border-l-2 border-blue-400"
+            class="flex cursor-pointer items-center gap-3 rounded-md px-3 py-2 text-sm transition-all duration-200 hover:bg-gray-700 active:scale-[0.98]"
+            [attr.title]="collapsed() ? item.label : null"
           >
             <span class="inline-flex h-5 w-5 items-center justify-center text-sm">{{ item.icon }}</span>
             @if (!collapsed()) {
@@ -43,7 +44,7 @@ import { MENU_ITEMS } from './sidebar-item';
       <div class="border-t border-gray-700 p-4">
         <button
           (click)="authService.logout()"
-          class="flex w-full cursor-pointer items-center gap-3 rounded-md px-3 py-2 text-sm text-red-400 transition-colors duration-200 hover:bg-gray-700"
+          class="flex w-full cursor-pointer items-center gap-3 rounded-md px-3 py-2 text-sm text-red-400 transition-all duration-200 hover:bg-gray-700 active:scale-[0.98]"
         >
           <span class="inline-flex h-5 w-5 items-center justify-center text-sm">&#10005;</span>
           @if (!collapsed()) {

@@ -23,6 +23,7 @@ export interface ToastConfig {
   template: `
     <div
       class="pointer-events-auto flex items-center gap-2 rounded-lg px-4 py-3 text-sm font-medium text-white shadow-lg"
+      role="status" aria-live="polite"
       [class.bg-green-600]="type() === 'success'"
       [class.bg-red-600]="type() === 'error'"
       [class.bg-blue-600]="type() === 'info'"

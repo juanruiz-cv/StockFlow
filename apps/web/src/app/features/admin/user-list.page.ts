@@ -18,7 +18,7 @@ import { User } from './models';
         <h1 class="text-2xl font-bold text-gray-900">Usuarios</h1>
         <a
           routerLink="/admin/users/new"
-          class="cursor-pointer rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors duration-150 hover:bg-blue-700"
+          class="cursor-pointer rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-all duration-150 hover:bg-blue-700 active:scale-[0.98]"
         >
           + Nuevo Usuario
         </a>
@@ -73,11 +73,11 @@ import { User } from './models';
                 </td>
                 <td class="px-4 py-3">
                   <div class="flex gap-3">
-                    <a [routerLink]="['/admin/users', user.id]" class="text-sm text-blue-600 transition-colors duration-150 hover:text-blue-800">Editar</a>
+                    <a [routerLink]="['/admin/users', user.id]" class="text-sm text-blue-600 transition-all duration-150 hover:text-blue-800 active:scale-[0.97]">Editar</a>
                     @if (user.is_active) {
-                      <button (click)="confirmDeactivate(user)" class="cursor-pointer text-sm text-red-600 transition-colors duration-150 hover:text-red-800">Desactivar</button>
+                      <button type="button" (click)="confirmDeactivate(user)" class="cursor-pointer text-sm text-red-600 transition-all duration-150 hover:text-red-800 active:scale-[0.97]">Desactivar</button>
                     } @else {
-                      <button (click)="activate(user)" class="cursor-pointer text-sm text-green-600 transition-colors duration-150 hover:text-green-800">Activar</button>
+                      <button type="button" (click)="activate(user)" class="cursor-pointer text-sm text-green-600 transition-all duration-150 hover:text-green-800 active:scale-[0.97]">Activar</button>
                     }
                   </div>
                 </td>
@@ -144,13 +144,14 @@ import { User } from './models';
             <div class="mt-6 flex justify-end gap-3">
               <button
                 (click)="cancelDeactivate()"
-                class="cursor-pointer rounded-lg border border-gray-300 px-4 py-2 text-sm transition-colors duration-150 hover:bg-gray-50"
+                class="cursor-pointer rounded-lg border border-gray-300 px-4 py-2 text-sm transition-all duration-150 hover:bg-gray-50 active:scale-[0.98]"
               >
                 Cancelar
               </button>
               <button
+                type="button"
                 (click)="executeDeactivate()"
-                class="cursor-pointer rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white transition-colors duration-150 hover:bg-red-700"
+                class="cursor-pointer rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white transition-all duration-150 hover:bg-red-700 active:scale-[0.98]"
               >
                 Desactivar
               </button>

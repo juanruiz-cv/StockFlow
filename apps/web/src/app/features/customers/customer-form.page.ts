@@ -55,7 +55,7 @@ import { CustomerService } from './customer.service';
           <button
             type="submit"
             [disabled]="submitting()"
-            class="cursor-pointer rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors duration-150 hover:bg-blue-700 disabled:opacity-50"
+            class="cursor-pointer rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-all duration-150 hover:bg-blue-700 active:scale-[0.98] disabled:opacity-50"
           >
             {{ submitting() ? 'Guardando...' : isEditing() ? 'Actualizar' : 'Crear Cliente' }}
           </button>

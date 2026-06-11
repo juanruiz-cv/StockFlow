@@ -25,7 +25,7 @@ import type { Sale } from './models';
         <h1 class="text-2xl font-bold text-gray-900">Historial de Ventas</h1>
         <a
           routerLink="/sales/pos"
-          class="cursor-pointer rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors duration-150 hover:bg-blue-700"
+          class="cursor-pointer rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-all duration-150 hover:bg-blue-700 active:scale-[0.98]"
         >
           + Nueva Venta
         </a>
@@ -74,7 +74,7 @@ import type { Sale } from './models';
                     <button
                       type="button"
                       (click)="voidSale(sale)"
-                      class="cursor-pointer text-xs text-red-500 transition-colors duration-150 hover:text-red-700"
+                      class="cursor-pointer text-xs text-red-500 transition-all duration-150 hover:text-red-700 active:scale-[0.97]"
                     >
                       Anular
                     </button>
@@ -162,7 +162,7 @@ import type { Sale } from './models';
         <button
           type="button"
           (click)="voidModalOpen.set(false)"
-          class="cursor-pointer rounded-lg border border-gray-300 px-4 py-2 text-sm transition-colors duration-150 hover:bg-gray-50"
+          class="cursor-pointer rounded-lg border border-gray-300 px-4 py-2 text-sm transition-all duration-150 hover:bg-gray-50 active:scale-[0.98]"
         >
           Cancelar
         </button>
@@ -170,7 +170,7 @@ import type { Sale } from './models';
           type="button"
           (click)="confirmVoid()"
           [disabled]="voiding() || !voidReason().trim()"
-          class="cursor-pointer rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white transition-colors duration-150 hover:bg-red-700 disabled:opacity-50"
+          class="cursor-pointer rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white transition-all duration-150 hover:bg-red-700 active:scale-[0.98] disabled:opacity-50"
         >
           {{ voiding() ? 'Anulando...' : 'Anular Venta' }}
         </button>

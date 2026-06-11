@@ -17,7 +17,7 @@ import { StockMovement } from './models';
         <h1 class="text-2xl font-bold text-gray-900">Movimientos de Stock</h1>
         <a
           routerLink="/stock/movement/new"
-          class="cursor-pointer rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors duration-150 hover:bg-blue-700"
+          class="cursor-pointer rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-all duration-150 hover:bg-blue-700 active:scale-[0.98]"
         >
           + Nuevo Movimiento
         </a>
@@ -28,7 +28,7 @@ import { StockMovement } from './models';
         @for (opt of filterOptions; track opt.value) {
           <button
             (click)="onFilterChange(opt.value)"
-            class="rounded-md px-4 py-2 text-sm font-medium transition-colors"
+            class="rounded-md px-4 py-2 text-sm font-medium transition-all duration-150 active:scale-[0.98]"
             [class.bg-white]="selectedType() === opt.value"
             [class.text-gray-900]="selectedType() === opt.value"
             [class.shadow-sm]="selectedType() === opt.value"

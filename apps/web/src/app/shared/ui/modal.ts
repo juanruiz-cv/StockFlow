@@ -19,7 +19,7 @@ import { TemplatePortal } from '@angular/cdk/portal';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <ng-template #content>
-      <div class="fixed inset-0 z-50 flex items-center justify-center">
+      <div class="fixed inset-0 z-50 flex items-center justify-center" role="dialog" aria-modal="true">
         <div class="fixed inset-0 bg-black/50" (click)="close.emit()"></div>
         <div
           class="relative z-10 mx-4 w-full max-w-lg rounded-lg bg-white p-6 shadow-xl max-h-[90vh] overflow-y-auto"

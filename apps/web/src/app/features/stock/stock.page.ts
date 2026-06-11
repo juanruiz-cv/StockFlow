@@ -19,13 +19,13 @@ import { StockItem } from './models';
         <div class="flex gap-2">
           <a
             routerLink="/stock/movements"
-            class="cursor-pointer rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 transition-colors duration-150 hover:bg-gray-50"
+            class="cursor-pointer rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 transition-all duration-150 hover:bg-gray-50 active:scale-[0.98]"
           >
             Ver Movimientos
           </a>
           <a
             routerLink="/stock/movement/new"
-            class="cursor-pointer rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors duration-150 hover:bg-blue-700"
+            class="cursor-pointer rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-all duration-150 hover:bg-blue-700 active:scale-[0.98]"
           >
             + Nuevo Movimiento
           </a>

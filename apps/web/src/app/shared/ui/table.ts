@@ -18,7 +18,7 @@ export interface PaginationState {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="overflow-x-auto rounded-lg border border-gray-200 bg-white">
-      <table class="w-full text-left text-sm">
+      <table class="w-full text-left text-sm border-separate border-spacing-0">
         <thead class="border-b border-gray-200 bg-gray-50 text-xs uppercase text-gray-500">
           <tr>
             @for (col of columns(); track $index) {
@@ -53,7 +53,12 @@ export interface PaginationState {
                 @if (loading()) {
                   Cargando...
                 } @else {
-                  {{ emptyMessage() }}
+                  <div class="flex flex-col items-center gap-2" role="status" aria-live="polite">
+                    <svg class="h-10 w-10 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                    </svg>
+                    <span>{{ emptyMessage() }}</span>
+                  </div>
                 }
               </td>
             </tr>
@@ -73,7 +78,7 @@ export interface PaginationState {
             <button
               (click)="goToPage(pagination().page - 1)"
               [disabled]="pagination().page <= 1"
-              class="cursor-pointer rounded-md px-3 py-1 text-sm transition-all duration-150 hover:bg-gray-100 disabled:opacity-40"
+              class="cursor-pointer rounded-md px-3 py-1 text-sm transition-all duration-150 hover:bg-gray-100 active:scale-[0.97] disabled:opacity-40"
             >
               Anterior
             </button>
@@ -81,7 +86,7 @@ export interface PaginationState {
             @for (p of pages(); track $index) {
               <button
                 (click)="goToPage(p)"
-                class="cursor-pointer rounded-md px-3 py-1 text-sm transition-all duration-150"
+                class="cursor-pointer rounded-md px-3 py-1 text-sm transition-all duration-150 active:scale-[0.97]"
                 [class.bg-blue-600]="p === pagination().page"
                 [class.text-white]="p === pagination().page"
                 [class.hover:bg-gray-100]="p !== pagination().page"
@@ -93,7 +98,7 @@ export interface PaginationState {
             <button
               (click)="goToPage(pagination().page + 1)"
               [disabled]="pagination().page >= totalPages()"
-              class="cursor-pointer rounded-md px-3 py-1 text-sm transition-all duration-150 hover:bg-gray-100 disabled:opacity-40"
+              class="cursor-pointer rounded-md px-3 py-1 text-sm transition-all duration-150 hover:bg-gray-100 active:scale-[0.97] disabled:opacity-40"
             >
               Siguiente
             </button>
