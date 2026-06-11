@@ -3,13 +3,15 @@ import { RouterLink } from '@angular/router';
 import { of, catchError, tap } from 'rxjs';
 import { SearchInput } from '../../shared/ui/search-input';
 import { PaginationState } from '../../shared/ui/table';
+import { ConfirmService } from '../../shared/ui/confirm-dialog';
+import { AppCanDirective } from './app-can.directive';
 import { AdminService } from './admin.service';
 import { Role } from './models';
 
 @Component({
   selector: 'app-role-list',
   standalone: true,
-  imports: [RouterLink, SearchInput],
+  imports: [RouterLink, SearchInput, AppCanDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="space-y-4">
@@ -60,7 +62,7 @@ import { Role } from './models';
                 <td class="px-4 py-3">
                   <div class="flex gap-3">
                     <a [routerLink]="['/admin/roles', role.id]" class="text-sm text-blue-600 transition-all duration-150 hover:text-blue-800 active:scale-[0.97]">Editar</a>
-                    <button type="button" (click)="confirmDelete(role)" class="cursor-pointer text-sm text-red-600 transition-all duration-150 hover:text-red-800 active:scale-[0.97]">Eliminar</button>
+                    <button type="button" (click)="confirmDelete(role)" [appCan]="'roles.delete'" class="cursor-pointer text-sm text-red-600 transition-all duration-150 hover:text-red-800 active:scale-[0.97]">Eliminar</button>
                   </div>
                 </td>
               </tr>
@@ -116,31 +118,6 @@ import { Role } from './models';
         }
       </div>
 
-      @if (deleteTarget()) {
-        <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-          <div class="w-full max-w-sm rounded-lg bg-white p-6 shadow-xl">
-            <p class="text-lg font-medium text-gray-900">¿Eliminar rol?</p>
-            <p class="mt-1 text-sm text-gray-500">
-              El rol "{{ deleteTarget()?.name }}" ser\u00e1 eliminado permanentemente.
-            </p>
-            <div class="mt-6 flex justify-end gap-3">
-              <button
-                (click)="cancelDelete()"
-                class="cursor-pointer rounded-lg border border-gray-300 px-4 py-2 text-sm transition-all duration-150 hover:bg-gray-50 active:scale-[0.98]"
-              >
-                Cancelar
-              </button>
-              <button
-                type="button"
-                (click)="executeDelete()"
-                class="cursor-pointer rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white transition-all duration-150 hover:bg-red-700 active:scale-[0.98]"
-              >
-                Eliminar
-              </button>
-            </div>
-          </div>
-        </div>
-      }
     </div>
   `,
 })
@@ -148,12 +125,12 @@ export class RoleListPage {
   protected readonly Math = Math;
 
   private readonly adminService = inject(AdminService);
+  private readonly confirmService = inject(ConfirmService);
   private readonly destroyRef = inject(DestroyRef);
 
   readonly searchTerm = signal('');
   readonly currentPage = signal(1);
   readonly loading = signal(false);
-  readonly deleteTarget = signal<Role | null>(null);
 
   readonly roles = signal<Role[]>([]);
   readonly pagination = signal<PaginationState>({ page: 1, limit: 20, total: 0 });
@@ -218,19 +195,13 @@ export class RoleListPage {
     }
   }
 
-  confirmDelete(role: Role): void {
-    this.deleteTarget.set(role);
-  }
-
-  cancelDelete(): void {
-    this.deleteTarget.set(null);
-  }
-
-  executeDelete(): void {
-    const target = this.deleteTarget();
-    if (!target) return;
-    this.deleteTarget.set(null);
-    this.adminService.deleteRole(target.id).subscribe(() => {
+  async confirmDelete(role: Role): Promise<void> {
+    const confirmed = await this.confirmService.confirm(
+      `El rol "${role.name}" será eliminado permanentemente.`,
+      'Eliminar',
+    );
+    if (!confirmed) return;
+    this.adminService.deleteRole(role.id).subscribe(() => {
       this.currentPage.set(1);
     });
   }

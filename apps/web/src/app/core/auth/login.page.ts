@@ -65,7 +65,11 @@ import { HttpErrorResponse } from '@angular/common/http';
               placeholder="••••••••"
             />
             @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
-              <p class="mt-1 text-xs text-red-500">Contraseña requerida</p>
+              @if (loginForm.get('password')?.hasError('minlength')) {
+                <p class="mt-1 text-xs text-red-500">Mínimo 6 caracteres</p>
+              } @else {
+                <p class="mt-1 text-xs text-red-500">Contraseña requerida</p>
+              }
             }
           </div>
 
@@ -90,7 +94,7 @@ export class LoginPage {
 
   readonly loginForm = this.fb.nonNullable.group({
     email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
   });
 
   onSubmit(): void {

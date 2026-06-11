@@ -1,4 +1,4 @@
-import { Injectable, signal, computed } from '@angular/core';
+import { Injectable, inject, signal, computed } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
@@ -12,11 +12,9 @@ export class AuthService {
   readonly isAuthenticated = computed(() => this.#user() !== null);
   readonly permissions = computed(() => this.#user()?.permissions ?? []);
 
-  constructor(
-    private readonly http: HttpClient,
-    private readonly router: Router,
-    private readonly tokenService: TokenService,
-  ) {}
+  private readonly http = inject(HttpClient);
+  private readonly router = inject(Router);
+  private readonly tokenService = inject(TokenService);
 
   #loadUser(): User | null {
     const stored = localStorage.getItem('stockflow_user');

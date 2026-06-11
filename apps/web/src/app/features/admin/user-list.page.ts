@@ -1,6 +1,5 @@
 import { Component, inject, signal, effect, computed, ChangeDetectionStrategy, DestroyRef } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { DatePipe } from '@angular/common';
 import { of, catchError, tap } from 'rxjs';
 import { SearchInput } from '../../shared/ui/search-input';
 import { PaginationState } from '../../shared/ui/table';
@@ -10,7 +9,7 @@ import { User } from './models';
 @Component({
   selector: 'app-user-list',
   standalone: true,
-  imports: [RouterLink, SearchInput, DatePipe],
+  imports: [RouterLink, SearchInput],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="space-y-4">
