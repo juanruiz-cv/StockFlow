@@ -14,7 +14,7 @@ import { CustomerService } from './customer.service';
     <div class="mx-auto max-w-2xl space-y-6">
       <div class="flex items-center justify-between">
         <h1 class="text-2xl font-bold text-gray-900">{{ isEditing() ? 'Editar Cliente' : 'Nuevo Cliente' }}</h1>
-        <a routerLink="/customers" class="text-sm text-blue-600 hover:text-blue-800">&larr; Volver</a>
+        <a routerLink="/customers" class="text-sm text-blue-600 transition-colors duration-150 hover:text-blue-800">&larr; Volver</a>
       </div>
 
       <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-4 rounded-lg border border-gray-200 bg-white p-6">
@@ -51,11 +51,11 @@ import { CustomerService } from './customer.service';
         }
 
         <div class="flex justify-end gap-3">
-          <a routerLink="/customers" class="rounded-lg border border-gray-300 px-4 py-2 text-sm hover:bg-gray-50">Cancelar</a>
+          <a routerLink="/customers" class="cursor-pointer rounded-lg border border-gray-300 px-4 py-2 text-sm transition-colors duration-150 hover:bg-gray-50">Cancelar</a>
           <button
             type="submit"
             [disabled]="submitting()"
-            class="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 disabled:opacity-50"
+            class="cursor-pointer rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors duration-150 hover:bg-blue-700 disabled:opacity-50"
           >
             {{ submitting() ? 'Guardando...' : isEditing() ? 'Actualizar' : 'Crear Cliente' }}
           </button>

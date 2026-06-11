@@ -17,9 +17,12 @@ import { RouterLink } from '@angular/router';
       <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         <a
           routerLink="/products"
-          class="rounded-lg bg-white p-6 shadow hover:shadow-md"
+          class="cursor-pointer rounded-lg border border-gray-100 bg-white p-6 shadow transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg"
         >
-          <h3 class="text-lg font-semibold">Productos</h3>
+          <h3 class="flex items-center gap-2 text-lg font-semibold">
+            <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-100 text-sm text-blue-600">⊞</span>
+            Productos
+          </h3>
           <p class="mt-2 text-sm text-gray-600">
             Gestionar catálogo de productos
           </p>
@@ -27,9 +30,12 @@ import { RouterLink } from '@angular/router';
 
         <a
           routerLink="/customers"
-          class="rounded-lg bg-white p-6 shadow hover:shadow-md"
+          class="cursor-pointer rounded-lg border border-gray-100 bg-white p-6 shadow transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg"
         >
-          <h3 class="text-lg font-semibold">Clientes</h3>
+          <h3 class="flex items-center gap-2 text-lg font-semibold">
+            <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-100 text-sm text-blue-600">◉</span>
+            Clientes
+          </h3>
           <p class="mt-2 text-sm text-gray-600">
             Administrar clientes
           </p>
@@ -37,9 +43,12 @@ import { RouterLink } from '@angular/router';
 
         <a
           routerLink="/stock"
-          class="rounded-lg bg-white p-6 shadow hover:shadow-md"
+          class="cursor-pointer rounded-lg border border-gray-100 bg-white p-6 shadow transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg"
         >
-          <h3 class="text-lg font-semibold">Stock</h3>
+          <h3 class="flex items-center gap-2 text-lg font-semibold">
+            <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-100 text-sm text-blue-600">☰</span>
+            Stock
+          </h3>
           <p class="mt-2 text-sm text-gray-600">
             Control de inventario
           </p>
@@ -47,9 +56,12 @@ import { RouterLink } from '@angular/router';
 
         <a
           routerLink="/caja"
-          class="rounded-lg bg-white p-6 shadow hover:shadow-md"
+          class="cursor-pointer rounded-lg border border-gray-100 bg-white p-6 shadow transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg"
         >
-          <h3 class="text-lg font-semibold">Caja</h3>
+          <h3 class="flex items-center gap-2 text-lg font-semibold">
+            <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-100 text-sm text-blue-600">$</span>
+            Caja
+          </h3>
           <p class="mt-2 text-sm text-gray-600">
             Gestión de caja
           </p>
@@ -57,9 +69,12 @@ import { RouterLink } from '@angular/router';
 
         <a
           routerLink="/sales"
-          class="rounded-lg bg-white p-6 shadow hover:shadow-md"
+          class="cursor-pointer rounded-lg border border-gray-100 bg-white p-6 shadow transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg"
         >
-          <h3 class="text-lg font-semibold">Ventas</h3>
+          <h3 class="flex items-center gap-2 text-lg font-semibold">
+            <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-100 text-sm text-blue-600">⌘</span>
+            Ventas
+          </h3>
           <p class="mt-2 text-sm text-gray-600">
             Registrar y consultar ventas
           </p>

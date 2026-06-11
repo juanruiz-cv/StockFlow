@@ -17,7 +17,7 @@ import { CashSession, CashMovement } from './models';
         <h1 class="text-2xl font-bold text-gray-900">Movimientos de Caja</h1>
         <a
           routerLink="/caja"
-          class="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+          class="cursor-pointer rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 transition-colors duration-150 hover:bg-gray-50"
         >
           &larr; Volver a Caja
         </a>
@@ -50,7 +50,7 @@ import { CashSession, CashMovement } from './models';
           </thead>
           <tbody class="divide-y divide-gray-100">
             @for (movement of movements(); track movement.id) {
-              <tr class="hover:bg-gray-50">
+              <tr class="transition-colors duration-150 hover:bg-gray-50">
                 <td class="px-4 py-3">
                   <span
                     class="inline-flex rounded-full px-2 py-0.5 text-xs font-medium"
@@ -99,27 +99,27 @@ import { CashSession, CashMovement } from './models';
               <button
                 (click)="onPageChange(pagination().page - 1)"
                 [disabled]="pagination().page <= 1"
-                class="rounded-md px-3 py-1 text-sm hover:bg-gray-100 disabled:opacity-40"
-              >
-                Anterior
-              </button>
-              @for (p of pages(); track $index) {
-                <button
-                  (click)="onPageChange(p)"
-                  class="rounded-md px-3 py-1 text-sm"
-                  [class.bg-blue-600]="p === pagination().page"
-                  [class.text-white]="p === pagination().page"
-                  [class.hover:bg-gray-100]="p !== pagination().page"
-                >
-                  {{ p }}
-                </button>
-              }
+              class="cursor-pointer rounded-md px-3 py-1 text-sm transition-all duration-150 hover:bg-gray-100 disabled:opacity-40"
+            >
+              Anterior
+            </button>
+            @for (p of pages(); track $index) {
               <button
-                (click)="onPageChange(pagination().page + 1)"
-                [disabled]="pagination().page >= totalPages()"
-                class="rounded-md px-3 py-1 text-sm hover:bg-gray-100 disabled:opacity-40"
+                (click)="onPageChange(p)"
+                class="cursor-pointer rounded-md px-3 py-1 text-sm transition-all duration-150"
+                [class.bg-blue-600]="p === pagination().page"
+                [class.text-white]="p === pagination().page"
+                [class.hover:bg-gray-100]="p !== pagination().page"
               >
-                Siguiente
+                {{ p }}
+              </button>
+            }
+            <button
+              (click)="onPageChange(pagination().page + 1)"
+              [disabled]="pagination().page >= totalPages()"
+              class="cursor-pointer rounded-md px-3 py-1 text-sm transition-all duration-150 hover:bg-gray-100 disabled:opacity-40"
+            >
+              Siguiente
               </button>
             </div>
           </div>

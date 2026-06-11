@@ -18,7 +18,7 @@ import { CashSession } from './models';
         @if (session()) {
           <a
             routerLink="/caja/movements"
-            class="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+            class="cursor-pointer rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 transition-colors duration-150 hover:bg-gray-50"
           >
             Ver Movimientos
           </a>
@@ -107,7 +107,7 @@ import { CashSession } from './models';
             <button
               type="submit"
               [disabled]="submitting() || openForm.invalid"
-              class="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 disabled:opacity-50"
+              class="cursor-pointer rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors duration-150 hover:bg-blue-700 disabled:opacity-50"
             >
               {{ submitting() ? 'Abriendo...' : 'Abrir Sesión' }}
             </button>
@@ -146,7 +146,7 @@ import { CashSession } from './models';
             <button
               type="submit"
               [disabled]="submitting() || closeForm.invalid"
-              class="rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700 disabled:opacity-50"
+              class="cursor-pointer rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white transition-colors duration-150 hover:bg-red-700 disabled:opacity-50"
             >
               {{ submitting() ? 'Cerrando...' : 'Cerrar Sesión' }}
             </button>

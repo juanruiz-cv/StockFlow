@@ -63,7 +63,7 @@ import { HttpErrorResponse } from '@angular/common/http';
           <button
             type="submit"
             [disabled]="loginForm.invalid || loading()"
-            class="w-full rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
+            class="w-full cursor-pointer rounded-md bg-blue-600 px-4 py-2 text-white transition-colors duration-200 hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
           >
             {{ loading() ? 'Ingresando...' : 'Ingresar' }}
           </button>

@@ -15,7 +15,7 @@ import { Role } from './models';
     <div class="mx-auto max-w-2xl space-y-6">
       <div class="flex items-center justify-between">
         <h1 class="text-2xl font-bold text-gray-900">{{ isEditing() ? 'Editar Usuario' : 'Nuevo Usuario' }}</h1>
-        <a routerLink="/admin/users" class="text-sm text-blue-600 hover:text-blue-800">&larr; Volver</a>
+        <a routerLink="/admin/users" class="text-sm text-blue-600 transition-colors duration-150 hover:text-blue-800">&larr; Volver</a>
       </div>
 
       <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-4 rounded-lg border border-gray-200 bg-white p-6">
@@ -58,7 +58,7 @@ import { Role } from './models';
           <label class="block text-sm font-medium text-gray-700 mb-2">Roles</label>
           <div class="space-y-2">
             @for (role of roles(); track role.id) {
-              <label class="flex items-center gap-2 text-sm">
+              <label class="flex cursor-pointer items-center gap-2 text-sm">
                 <input
                   type="checkbox"
                   [value]="role.id"
@@ -79,11 +79,11 @@ import { Role } from './models';
         }
 
         <div class="flex justify-end gap-3">
-          <a routerLink="/admin/users" class="rounded-lg border border-gray-300 px-4 py-2 text-sm hover:bg-gray-50">Cancelar</a>
+          <a routerLink="/admin/users" class="cursor-pointer rounded-lg border border-gray-300 px-4 py-2 text-sm transition-colors duration-150 hover:bg-gray-50">Cancelar</a>
           <button
             type="submit"
             [disabled]="submitting()"
-            class="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 disabled:opacity-50"
+            class="cursor-pointer rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors duration-150 hover:bg-blue-700 disabled:opacity-50"
           >
             {{ submitting() ? 'Guardando...' : isEditing() ? 'Actualizar' : 'Crear Usuario' }}
           </button>

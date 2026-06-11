@@ -40,7 +40,7 @@ export interface PaginationState {
         </thead>
         <tbody class="divide-y divide-gray-100">
           @for (row of data(); track rowKey(row)) {
-            <tr class="hover:bg-gray-50">
+            <tr class="transition-colors duration-150 hover:bg-gray-50">
               @for (col of columns(); track $index) {
                 <td class="px-4 py-3">
                   {{ cellValue(row, col.key) }}
@@ -73,7 +73,7 @@ export interface PaginationState {
             <button
               (click)="goToPage(pagination().page - 1)"
               [disabled]="pagination().page <= 1"
-              class="rounded-md px-3 py-1 text-sm hover:bg-gray-100 disabled:opacity-40"
+              class="cursor-pointer rounded-md px-3 py-1 text-sm transition-all duration-150 hover:bg-gray-100 disabled:opacity-40"
             >
               Anterior
             </button>
@@ -81,7 +81,7 @@ export interface PaginationState {
             @for (p of pages(); track $index) {
               <button
                 (click)="goToPage(p)"
-                class="rounded-md px-3 py-1 text-sm"
+                class="cursor-pointer rounded-md px-3 py-1 text-sm transition-all duration-150"
                 [class.bg-blue-600]="p === pagination().page"
                 [class.text-white]="p === pagination().page"
                 [class.hover:bg-gray-100]="p !== pagination().page"
@@ -93,7 +93,7 @@ export interface PaginationState {
             <button
               (click)="goToPage(pagination().page + 1)"
               [disabled]="pagination().page >= totalPages()"
-              class="rounded-md px-3 py-1 text-sm hover:bg-gray-100 disabled:opacity-40"
+              class="cursor-pointer rounded-md px-3 py-1 text-sm transition-all duration-150 hover:bg-gray-100 disabled:opacity-40"
             >
               Siguiente
             </button>

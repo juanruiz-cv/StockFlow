@@ -25,7 +25,7 @@ import type { CartItem } from './models';
     <div class="space-y-6">
       <div class="flex items-center justify-between">
         <h1 class="text-2xl font-bold text-gray-900">Punto de Venta (POS)</h1>
-        <a routerLink="/sales" class="text-sm text-blue-600 hover:text-blue-800"
+        <a routerLink="/sales" class="text-sm text-blue-600 transition-colors duration-150 hover:text-blue-800"
           >&larr; Historial de Ventas</a
         >
       </div>
@@ -42,8 +42,9 @@ import type { CartItem } from './models';
                 placeholder="Buscar producto por nombre o SKU..."
                 class="w-full rounded-lg border border-gray-300 px-3 py-2 pl-10 text-sm focus:border-blue-500 focus:outline-none"
               />
-              <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"
-                >🔍</span
+              <svg class="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+              </svg>
               >
             </div>
 
@@ -53,7 +54,7 @@ import type { CartItem } from './models';
                   <button
                     type="button"
                     (click)="addToCart(product)"
-                    class="flex w-full items-center justify-between rounded-md px-3 py-2 text-left text-sm hover:bg-gray-50"
+                    class="flex w-full cursor-pointer items-center justify-between rounded-md px-3 py-2 text-left text-sm transition-colors duration-150 hover:bg-gray-50"
                   >
                     <div>
                       <span class="font-medium">{{ product.nombre }}</span>
@@ -121,7 +122,7 @@ import type { CartItem } from './models';
                     <button
                       type="button"
                       (click)="adjustQuantity(item.product_id, -1)"
-                      class="flex h-7 w-7 items-center justify-center rounded-md border border-gray-300 text-sm hover:bg-gray-50"
+                      class="flex h-7 w-7 cursor-pointer items-center justify-center rounded-md border border-gray-300 text-sm transition-colors duration-150 hover:bg-gray-50"
                     >
                       −
                     </button>
@@ -131,7 +132,7 @@ import type { CartItem } from './models';
                     <button
                       type="button"
                       (click)="adjustQuantity(item.product_id, 1)"
-                      class="flex h-7 w-7 items-center justify-center rounded-md border border-gray-300 text-sm hover:bg-gray-50"
+                      class="flex h-7 w-7 cursor-pointer items-center justify-center rounded-md border border-gray-300 text-sm transition-colors duration-150 hover:bg-gray-50"
                     >
                       +
                     </button>
@@ -143,7 +144,7 @@ import type { CartItem } from './models';
                     <button
                       type="button"
                       (click)="removeFromCart(item.product_id)"
-                      class="text-xs text-red-500 hover:text-red-700"
+                      class="cursor-pointer text-xs text-red-500 transition-colors duration-150 hover:text-red-700"
                     >
                       Quitar
                     </button>
@@ -164,7 +165,7 @@ import type { CartItem } from './models';
                 <button
                   type="button"
                   (click)="openPaymentModal()"
-                  class="mt-4 w-full rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+                  class="mt-4 w-full cursor-pointer rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors duration-150 hover:bg-blue-700"
                 >
                   Cobrar
                 </button>
@@ -231,14 +232,14 @@ import type { CartItem } from './models';
           <button
             type="button"
             (click)="paymentModalOpen.set(false)"
-            class="rounded-lg border border-gray-300 px-4 py-2 text-sm hover:bg-gray-50"
+            class="cursor-pointer rounded-lg border border-gray-300 px-4 py-2 text-sm transition-colors duration-150 hover:bg-gray-50"
           >
             Cancelar
           </button>
           <button
             type="submit"
             [disabled]="submitting() || paymentForm.invalid || calculatedChange() < 0"
-            class="rounded-lg bg-green-600 px-4 py-2 text-sm font-medium text-white hover:bg-green-700 disabled:opacity-50"
+            class="cursor-pointer rounded-lg bg-green-600 px-4 py-2 text-sm font-medium text-white transition-colors duration-150 hover:bg-green-700 disabled:opacity-50"
           >
             {{ submitting() ? 'Procesando...' : 'Confirmar Pago' }}
           </button>

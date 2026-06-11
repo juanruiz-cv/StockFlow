@@ -17,7 +17,7 @@ import { Product } from './models';
         <h1 class="text-2xl font-bold text-gray-900">Productos</h1>
         <a
           routerLink="/products/new"
-          class="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+          class="cursor-pointer rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors duration-150 hover:bg-blue-700"
         >
           + Nuevo Producto
         </a>

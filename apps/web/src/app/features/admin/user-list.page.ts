@@ -18,7 +18,7 @@ import { User } from './models';
         <h1 class="text-2xl font-bold text-gray-900">Usuarios</h1>
         <a
           routerLink="/admin/users/new"
-          class="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+          class="cursor-pointer rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors duration-150 hover:bg-blue-700"
         >
           + Nuevo Usuario
         </a>
@@ -52,7 +52,7 @@ import { User } from './models';
           </thead>
           <tbody class="divide-y divide-gray-100">
             @for (user of users(); track user.id) {
-              <tr class="hover:bg-gray-50">
+              <tr class="transition-colors duration-150 hover:bg-gray-50">
                 <td class="px-4 py-3">{{ user.name }}</td>
                 <td class="px-4 py-3">{{ user.email }}</td>
                 <td class="px-4 py-3">
@@ -73,11 +73,11 @@ import { User } from './models';
                 </td>
                 <td class="px-4 py-3">
                   <div class="flex gap-3">
-                    <a [routerLink]="['/admin/users', user.id]" class="text-sm text-blue-600 hover:text-blue-800">Editar</a>
+                    <a [routerLink]="['/admin/users', user.id]" class="text-sm text-blue-600 transition-colors duration-150 hover:text-blue-800">Editar</a>
                     @if (user.is_active) {
-                      <button (click)="confirmDeactivate(user)" class="text-sm text-red-600 hover:text-red-800">Desactivar</button>
+                      <button (click)="confirmDeactivate(user)" class="cursor-pointer text-sm text-red-600 transition-colors duration-150 hover:text-red-800">Desactivar</button>
                     } @else {
-                      <button (click)="activate(user)" class="text-sm text-green-600 hover:text-green-800">Activar</button>
+                      <button (click)="activate(user)" class="cursor-pointer text-sm text-green-600 transition-colors duration-150 hover:text-green-800">Activar</button>
                     }
                   </div>
                 </td>
@@ -107,27 +107,27 @@ import { User } from './models';
               <button
                 (click)="onPageChange(pagination().page - 1)"
                 [disabled]="pagination().page <= 1"
-                class="rounded-md px-3 py-1 text-sm hover:bg-gray-100 disabled:opacity-40"
-              >
-                Anterior
-              </button>
-              @for (p of pages(); track $index) {
-                <button
-                  (click)="onPageChange(p)"
-                  class="rounded-md px-3 py-1 text-sm"
-                  [class.bg-blue-600]="p === pagination().page"
-                  [class.text-white]="p === pagination().page"
-                  [class.hover:bg-gray-100]="p !== pagination().page"
-                >
-                  {{ p }}
-                </button>
-              }
+              class="cursor-pointer rounded-md px-3 py-1 text-sm transition-all duration-150 hover:bg-gray-100 disabled:opacity-40"
+            >
+              Anterior
+            </button>
+            @for (p of pages(); track $index) {
               <button
-                (click)="onPageChange(pagination().page + 1)"
-                [disabled]="pagination().page >= totalPages()"
-                class="rounded-md px-3 py-1 text-sm hover:bg-gray-100 disabled:opacity-40"
+                (click)="onPageChange(p)"
+                class="cursor-pointer rounded-md px-3 py-1 text-sm transition-all duration-150"
+                [class.bg-blue-600]="p === pagination().page"
+                [class.text-white]="p === pagination().page"
+                [class.hover:bg-gray-100]="p !== pagination().page"
               >
-                Siguiente
+                {{ p }}
+              </button>
+            }
+            <button
+              (click)="onPageChange(pagination().page + 1)"
+              [disabled]="pagination().page >= totalPages()"
+              class="cursor-pointer rounded-md px-3 py-1 text-sm transition-all duration-150 hover:bg-gray-100 disabled:opacity-40"
+            >
+              Siguiente
               </button>
             </div>
           </div>
@@ -144,13 +144,13 @@ import { User } from './models';
             <div class="mt-6 flex justify-end gap-3">
               <button
                 (click)="cancelDeactivate()"
-                class="rounded-lg border border-gray-300 px-4 py-2 text-sm hover:bg-gray-50"
+                class="cursor-pointer rounded-lg border border-gray-300 px-4 py-2 text-sm transition-colors duration-150 hover:bg-gray-50"
               >
                 Cancelar
               </button>
               <button
                 (click)="executeDeactivate()"
-                class="rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700"
+                class="cursor-pointer rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white transition-colors duration-150 hover:bg-red-700"
               >
                 Desactivar
               </button>

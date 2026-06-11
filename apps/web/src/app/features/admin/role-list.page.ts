@@ -17,7 +17,7 @@ import { Role } from './models';
         <h1 class="text-2xl font-bold text-gray-900">Roles</h1>
         <a
           routerLink="/admin/roles/new"
-          class="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+          class="cursor-pointer rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors duration-150 hover:bg-blue-700"
         >
           + Nuevo Rol
         </a>
@@ -38,7 +38,7 @@ import { Role } from './models';
           </thead>
           <tbody class="divide-y divide-gray-100">
             @for (role of roles(); track role.id) {
-              <tr class="hover:bg-gray-50">
+              <tr class="transition-colors duration-150 hover:bg-gray-50">
                 <td class="px-4 py-3 font-medium">{{ role.name }}</td>
                 <td class="px-4 py-3">
                   <div class="flex flex-wrap gap-1">
@@ -59,8 +59,8 @@ import { Role } from './models';
                 </td>
                 <td class="px-4 py-3">
                   <div class="flex gap-3">
-                    <a [routerLink]="['/admin/roles', role.id]" class="text-sm text-blue-600 hover:text-blue-800">Editar</a>
-                    <button (click)="confirmDelete(role)" class="text-sm text-red-600 hover:text-red-800">Eliminar</button>
+                    <a [routerLink]="['/admin/roles', role.id]" class="text-sm text-blue-600 transition-colors duration-150 hover:text-blue-800">Editar</a>
+                    <button (click)="confirmDelete(role)" class="cursor-pointer text-sm text-red-600 transition-colors duration-150 hover:text-red-800">Eliminar</button>
                   </div>
                 </td>
               </tr>
@@ -89,27 +89,27 @@ import { Role } from './models';
               <button
                 (click)="onPageChange(pagination().page - 1)"
                 [disabled]="pagination().page <= 1"
-                class="rounded-md px-3 py-1 text-sm hover:bg-gray-100 disabled:opacity-40"
-              >
-                Anterior
-              </button>
-              @for (p of pages(); track $index) {
-                <button
-                  (click)="onPageChange(p)"
-                  class="rounded-md px-3 py-1 text-sm"
-                  [class.bg-blue-600]="p === pagination().page"
-                  [class.text-white]="p === pagination().page"
-                  [class.hover:bg-gray-100]="p !== pagination().page"
-                >
-                  {{ p }}
-                </button>
-              }
+              class="cursor-pointer rounded-md px-3 py-1 text-sm transition-all duration-150 hover:bg-gray-100 disabled:opacity-40"
+            >
+              Anterior
+            </button>
+            @for (p of pages(); track $index) {
               <button
-                (click)="onPageChange(pagination().page + 1)"
-                [disabled]="pagination().page >= totalPages()"
-                class="rounded-md px-3 py-1 text-sm hover:bg-gray-100 disabled:opacity-40"
+                (click)="onPageChange(p)"
+                class="cursor-pointer rounded-md px-3 py-1 text-sm transition-all duration-150"
+                [class.bg-blue-600]="p === pagination().page"
+                [class.text-white]="p === pagination().page"
+                [class.hover:bg-gray-100]="p !== pagination().page"
               >
-                Siguiente
+                {{ p }}
+              </button>
+            }
+            <button
+              (click)="onPageChange(pagination().page + 1)"
+              [disabled]="pagination().page >= totalPages()"
+              class="cursor-pointer rounded-md px-3 py-1 text-sm transition-all duration-150 hover:bg-gray-100 disabled:opacity-40"
+            >
+              Siguiente
               </button>
             </div>
           </div>
@@ -126,13 +126,13 @@ import { Role } from './models';
             <div class="mt-6 flex justify-end gap-3">
               <button
                 (click)="cancelDelete()"
-                class="rounded-lg border border-gray-300 px-4 py-2 text-sm hover:bg-gray-50"
+                class="cursor-pointer rounded-lg border border-gray-300 px-4 py-2 text-sm transition-colors duration-150 hover:bg-gray-50"
               >
                 Cancelar
               </button>
               <button
                 (click)="executeDelete()"
-                class="rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700"
+                class="cursor-pointer rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white transition-colors duration-150 hover:bg-red-700"
               >
                 Eliminar
               </button>

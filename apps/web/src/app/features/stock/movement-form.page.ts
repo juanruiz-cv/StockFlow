@@ -16,7 +16,7 @@ import { Product } from '../products/models';
     <div class="mx-auto max-w-2xl space-y-6">
       <div class="flex items-center justify-between">
         <h1 class="text-2xl font-bold text-gray-900">Nuevo Movimiento de Stock</h1>
-        <a routerLink="/stock" class="text-sm text-blue-600 hover:text-blue-800">&larr; Volver</a>
+        <a routerLink="/stock" class="text-sm text-blue-600 transition-colors duration-150 hover:text-blue-800">&larr; Volver</a>
       </div>
 
       <!-- Type selector tabs -->
@@ -56,7 +56,7 @@ import { Product } from '../products/models';
                   <button
                     type="button"
                     (click)="selectProduct(product)"
-                    class="w-full px-3 py-2 text-left text-sm hover:bg-gray-50"
+                    class="w-full cursor-pointer px-3 py-2 text-left text-sm transition-colors duration-150 hover:bg-gray-50"
                     [class.bg-blue-50]="selectedProduct()?.id === product.id"
                   >
                     <span class="font-medium">{{ product.nombre }}</span>
@@ -126,11 +126,11 @@ import { Product } from '../products/models';
         }
 
         <div class="flex justify-end gap-3">
-          <a routerLink="/stock" class="rounded-lg border border-gray-300 px-4 py-2 text-sm hover:bg-gray-50">Cancelar</a>
+          <a routerLink="/stock" class="cursor-pointer rounded-lg border border-gray-300 px-4 py-2 text-sm transition-colors duration-150 hover:bg-gray-50">Cancelar</a>
           <button
             type="submit"
             [disabled]="submitting()"
-            class="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 disabled:opacity-50"
+            class="cursor-pointer rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors duration-150 hover:bg-blue-700 disabled:opacity-50"
           >
             {{ submitting() ? 'Guardando...' : submitLabel() }}
           </button>
