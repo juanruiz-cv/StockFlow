@@ -1,4 +1,6 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @layer base {
   html {
@@ -20,71 +22,21 @@
 }
 
 .btn-primary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 0.5rem;
-  background-color: #2563EB;
-  padding: 0.5rem 1rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #fff;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.btn-primary:hover {
-  background-color: #1D4ED8;
-}
-.btn-primary:active {
-  transform: scale(0.98);
-}
-.btn-primary:disabled {
-  cursor: not-allowed;
-  opacity: 0.5;
-}
-.btn-primary:focus-visible {
-  outline: 2px solid #2563EB;
-  outline-offset: 2px;
+  @apply inline-flex items-center justify-center rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-all duration-200 hover:bg-blue-700 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50;
 }
 
 .btn-secondary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 0.5rem;
-  border: 1px solid #D1D5DB;
-  background-color: #fff;
-  padding: 0.5rem 1rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #374151;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.btn-secondary:hover {
-  background-color: #F9FAFB;
-}
-.btn-secondary:active {
-  transform: scale(0.98);
-}
-.btn-secondary:disabled {
-  cursor: not-allowed;
-  opacity: 0.5;
+  @apply inline-flex items-center justify-center rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition-all duration-200 hover:bg-gray-50 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-300/50;
 }
 
 .card {
-  border-radius: 0.75rem;
-  border: 1px solid #F3F4F6;
-  background-color: #fff;
+  @apply rounded-xl border border-gray-100 bg-white transition-all duration-200;
   box-shadow: 0 2px 8px -2px rgba(0,0,0,0.06), 0 4px 12px -2px rgba(0,0,0,0.03);
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .card-hover {
-  border-radius: 0.75rem;
-  border: 1px solid #F3F4F6;
-  background-color: #fff;
+  @apply rounded-xl border border-gray-100 bg-white transition-all duration-200 cursor-pointer;
   box-shadow: 0 2px 8px -2px rgba(0,0,0,0.06), 0 4px 12px -2px rgba(0,0,0,0.03);
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
 }
 .card-hover:hover {
   box-shadow: 0 4px 12px -4px rgba(0,0,0,0.1), 0 8px 24px -4px rgba(0,0,0,0.06);
@@ -92,34 +44,9 @@
 }
 
 .input-field {
-  display: block;
-  width: 100%;
-  border-radius: 0.5rem;
-  border: 1px solid #D1D5DB;
-  background-color: #fff;
-  padding: 0.5rem 0.75rem;
-  font-size: 0.875rem;
-  color: #111827;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.input-field::placeholder {
-  color: #9CA3AF;
-}
-.input-field:focus {
-  border-color: #2563EB;
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
-}
-.input-field:disabled {
-  cursor: not-allowed;
-  opacity: 0.5;
+  @apply block w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 transition-all duration-200 placeholder:text-gray-400 focus:border-blue-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/30 disabled:cursor-not-allowed disabled:opacity-50;
 }
 
 .badge {
-  display: inline-flex;
-  align-items: center;
-  border-radius: 9999px;
-  padding: 0.125rem 0.625rem;
-  font-size: 0.75rem;
-  font-weight: 500;
+  @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium;
 }
